@@ -337,18 +337,16 @@ def getProcessName(pid):
         logging.debug('PID must be greater than 0')
         return 'UNKNOWN'
     try:
-        pName = str(subprocess.check_output("ps -p %d -o comm=" % (int(pid)), shell=True))
+        pName = subprocess.check_output(
+            ["ps", "-p", str(pid), "-o", "comm="], text=True
+        )
     except subprocess.CalledProcessError as e:
         pName = 'UNKNOWN'
 
     if pName == None:
+    pName = pName.strip()  # remove \n
+    if not pName:
         pName = 'UNKNOWN'
-
-    # Remove the substrings surrounding from process name (b' and \n')
-    if str(pName).startswith('b\''):
-        pName = pName[2:]
-    if str(pName).endswith('\\n\''):
-        pName = pName[:-3]
 
     return pName
 
