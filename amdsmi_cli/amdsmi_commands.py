@@ -147,7 +147,7 @@ class AMDSMICommands():
             args.gpu = gpu
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             args.gpu = self.device_handles
 
         # Handle multiple GPUs
@@ -890,15 +890,15 @@ class AMDSMICommands():
         if self.helpers.is_amd_hsmp_initialized() and self.helpers.is_amdgpu_initialized():
             # Print out all CPU and all GPU static info only if no device was specified.
             # If a GPU or CPU argument is provided only print out the specified device.
-            if args.cpu == None and args.gpu == None:
+            if args.cpu is None and args.gpu is None:
                 if not cpu_args_enabled and not gpu_args_enabled:
                     args.cpu = self.cpu_handles
                     args.gpu = self.device_handles
 
             # Handle cases where the user has only specified an argument and no specific device
-            if args.gpu == None and gpu_args_enabled:
+            if args.gpu is None and gpu_args_enabled:
                 args.gpu = self.device_handles
-            if args.cpu == None and cpu_args_enabled:
+            if args.cpu is None and cpu_args_enabled:
                 args.cpu = self.cpu_handles
 
             if args.cpu:
@@ -912,12 +912,12 @@ class AMDSMICommands():
                                     dfc_ucode, fb_info, num_vf, soc_pstate,
                                     process_isolation)
         elif self.helpers.is_amd_hsmp_initialized(): # Only CPU is initialized
-            if args.cpu == None:
+            if args.cpu is None:
                 args.cpu = self.cpu_handles
 
             self.static_cpu(args, multiple_devices, cpu, interface_ver)
         elif self.helpers.is_amdgpu_initialized(): # Only GPU is initialized
-            if args.gpu == None:
+            if args.gpu is None:
                 args.gpu = self.device_handles
 
             self.logger.clear_multiple_devices_ouput()
@@ -948,7 +948,7 @@ class AMDSMICommands():
             args.fw_list = fw_list
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             args.gpu = self.device_handles
 
         # Handle multiple GPUs
@@ -1031,7 +1031,7 @@ class AMDSMICommands():
             args.un_res = un_res
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             args.gpu = self.device_handles
 
         # Handle multiple GPUs
@@ -1256,7 +1256,7 @@ class AMDSMICommands():
             current_platform_values += [args.schedule, args.guard, args.guest_data, args.fb_usage, args.xgmi]
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             args.gpu = self.device_handles
 
         # Handle watch logic, will only enter this block once
@@ -2097,7 +2097,7 @@ class AMDSMICommands():
                                     args.cpu_dimm_thermal_sensor]
 
         # Handle No CPU passed (fall back as this should be defined in metric())
-        if args.cpu == None:
+        if args.cpu is None:
             args.cpu = self.cpu_handles
 
         if not any(curr_platform_cpu_values):
@@ -2334,7 +2334,7 @@ class AMDSMICommands():
         curr_platform_core_values = [args.core_boost_limit, args.core_curr_active_freq_core_limit, args.core_energy]
 
         # Handle No cores passed
-        if args.core == None:
+        if args.core is None:
             args.core = self.core_handles
 
         if not any(curr_platform_core_values):
@@ -2512,7 +2512,7 @@ class AMDSMICommands():
             logging.debug("args.gpu: %s, args.cpu: %s, args.core: %s", args.gpu, args.cpu, args.core)
 
             # If a GPU or CPU argument is provided only print out the specified device.
-            if args.cpu == None and args.gpu == None and args.core == None:
+            if args.cpu is None and args.gpu is None and args.core is None:
                 # If no args are set, print out all CPU, GPU, and Core metrics info
                 if not gpu_args_enabled and not cpu_args_enabled and not core_args_enabled:
                     args.cpu = self.cpu_handles
@@ -2520,11 +2520,11 @@ class AMDSMICommands():
                     args.core = self.core_handles
 
             # Handle cases where the user has only specified an argument and no specific device
-            if args.gpu == None and gpu_args_enabled:
+            if args.gpu is None and gpu_args_enabled:
                 args.gpu = self.device_handles
-            if args.cpu == None and cpu_args_enabled:
+            if args.cpu is None and cpu_args_enabled:
                 args.cpu = self.cpu_handles
-            if args.core == None and core_args_enabled:
+            if args.core is None and core_args_enabled:
                 args.core = self.core_handles
 
             # Print out CPU first
@@ -2550,15 +2550,15 @@ class AMDSMICommands():
                                 xgmi_err, energy, mem_usage, schedule,
                                 guard, guest_data, fb_usage, xgmi)
         elif self.helpers.is_amd_hsmp_initialized(): # Only CPU is initialized
-            if args.cpu == None and args.core == None:
+            if args.cpu is None and args.core is None:
                 # If no args are set, print out all CPU and Core metrics info
                 if not cpu_args_enabled and not core_args_enabled:
                     args.cpu = self.cpu_handles
                     args.core = self.core_handles
 
-            if args.cpu == None and cpu_args_enabled:
+            if args.cpu is None and cpu_args_enabled:
                 args.cpu = self.cpu_handles
-            if args.core == None and core_args_enabled:
+            if args.core is None and core_args_enabled:
                 args.core = self.core_handles
 
             if args.cpu:
@@ -2574,7 +2574,7 @@ class AMDSMICommands():
                 self.metric_core(args, multiple_devices, core, core_boost_limit,
                                      core_curr_active_freq_core_limit, core_energy)
         elif self.helpers.is_amdgpu_initialized(): # Only GPU is initialized
-            if args.gpu == None:
+            if args.gpu is None:
                 args.gpu = self.device_handles
 
             self.logger.clear_multiple_devices_ouput()
@@ -2628,7 +2628,7 @@ class AMDSMICommands():
             args.iterations = iterations
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             args.gpu = self.device_handles
 
         # Handle watch logic, will only enter this block once
@@ -2809,7 +2809,7 @@ class AMDSMICommands():
         if args.gpu:
             gpu = args.gpu
 
-        if gpu == None:
+        if gpu is None:
             args.gpu = self.device_handles
 
         if not isinstance(args.gpu, list):
@@ -2874,7 +2874,7 @@ class AMDSMICommands():
             args.bi_dir = bi_dir
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             args.gpu = self.device_handles
 
         if not isinstance(args.gpu, list):
@@ -3444,7 +3444,7 @@ class AMDSMICommands():
         if core_boost_limit:
             args.core_boost_limit = core_boost_limit
 
-        if args.core == None:
+        if args.core is None:
             raise ValueError('No Core provided, specific Core targets(S) are needed')
 
         # Handle multiple cores
@@ -3533,7 +3533,7 @@ class AMDSMICommands():
         if soc_boost_limit:
             args.soc_boost_limit = soc_boost_limit
 
-        if args.cpu == None:
+        if args.cpu is None:
             raise ValueError('No CPU provided, specific CPU targets(S) are needed')
 
         #Handle multiple CPU's
@@ -3714,7 +3714,7 @@ class AMDSMICommands():
             args.process_isolation = process_isolation
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             raise ValueError('No GPU provided, specific GPU target(s) are needed')
 
         # Handle multiple GPUs
@@ -3965,7 +3965,7 @@ class AMDSMICommands():
         if self.helpers.is_amd_hsmp_initialized() and self.helpers.is_amdgpu_initialized():
             # Print out all CPU and all GPU static info only if no device was specified.
             # If a GPU or CPU argument is provided only print out the specified device.
-            if args.cpu == None and args.gpu == None and args.core == None:
+            if args.cpu is None and args.gpu is None and args.core is None:
                 raise ValueError('No GPU, CPU, or CORE provided, specific target(s) are needed')
 
             if args.cpu:
@@ -3985,7 +3985,7 @@ class AMDSMICommands():
                                 memory_partition, power_cap, soc_pstate, xgmi_plpd,
                                 process_isolation)
         elif self.helpers.is_amd_hsmp_initialized(): # Only CPU is initialized
-            if args.cpu == None and args.core == None:
+            if args.cpu is None and args.core is None:
                 raise ValueError('No CPU or CORE provided, specific target(s) are needed')
             if args.cpu:
                 self.set_cpu(args, multiple_devices, cpu, cpu_pwr_limit,
@@ -3997,7 +3997,7 @@ class AMDSMICommands():
                 self.logger.clear_multiple_devices_ouput()
                 self.set_core(args, multiple_devices, core, core_boost_limit)
         elif self.helpers.is_amdgpu_initialized(): # Only GPU is initialized
-            if args.gpu == None:
+            if args.gpu is None:
                 raise ValueError('No GPU provided, specific GPU target(s) are needed')
             self.logger.clear_multiple_devices_ouput()
             self.set_gpu(args, multiple_devices, gpu, fan, perf_level,
@@ -4058,7 +4058,7 @@ class AMDSMICommands():
             args.clean_local_data = clean_local_data
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             raise ValueError('No GPU provided, specific GPU target(s) are needed')
 
         # Handle multiple GPUs
@@ -4306,7 +4306,7 @@ class AMDSMICommands():
             args.process = process
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             args.gpu = self.device_handles
 
         # If all arguments are False, the print all values
@@ -4746,7 +4746,7 @@ class AMDSMICommands():
             args.metric = metric
 
         # Handle No GPU passed
-        if args.gpu == None:
+        if args.gpu is None:
             args.gpu = self.device_handles
 
         if not isinstance(args.gpu, list):

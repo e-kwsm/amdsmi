@@ -152,7 +152,7 @@ class TestAmdSmiPythonInterface(unittest.TestCase):
             print("\n###Test amdsmi_get_gpu_ras_feature_info \n")
             ras_feature = amdsmi.amdsmi_get_gpu_ras_feature_info(processors[i])
             print("ras_feature: " + str(ras_feature))
-            if ras_feature != None:
+            if ras_feature is not None:
                 print("ras_feature: " + str(ras_feature))
                 print("RAS eeprom version: {}".format(ras_feature['eeprom_version']))
                 print("RAS parity schema: {}".format(ras_feature['parity_schema']))
