@@ -71,14 +71,14 @@ validClockNames.sort()
 def driverInitialized():
     """ Returns true if amdgpu is found in the list of initialized modules
     """
-    driverInitialized = ''
     try:
-        driverInitialized = str(subprocess.check_output("cat /sys/module/amdgpu/initstate |grep live", shell=True))
+        p = subprocess.run(
+            ["grep", "-q", "live", "/sys/module/amdgpu/initstate"]
+        )
     except subprocess.CalledProcessError:
-        pass
-    if len(driverInitialized) > 0:
-        return True
-    return False
+        return False
+    else:
+        return p.returncode == 0
 
 
 def formatJson(device, log):
@@ -334,18 +334,16 @@ def getProcessName(pid):
         logging.debug('PID must be greater than 0')
         return 'UNKNOWN'
     try:
-        pName = str(subprocess.check_output("ps -p %d -o comm=" % (int(pid)), shell=True))
+        pName = subprocess.check_output(
+            ["ps", "-p", str(pid), "-o", "comm="], text=True
+        )
     except subprocess.CalledProcessError as e:
         pName = 'UNKNOWN'
 
     if pName == None:
+    pName = pName.strip()  # remove \n
+    if not pName:
         pName = 'UNKNOWN'
-
-    # Remove the substrings surrounding from process name (b' and \n')
-    if str(pName).startswith('b\''):
-        pName = pName[2:]
-    if str(pName).endswith('\\n\''):
-        pName = pName[:-3]
 
     return pName
 
