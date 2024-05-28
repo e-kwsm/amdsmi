@@ -824,7 +824,7 @@ class TestAmdSmiPythonInterface(unittest.TestCase):
             except amdsmi.AmdSmiLibraryException as e:
                 self._check_exception(e)
                 continue
-            if ras_feature != None:
+            if ras_feature is not None:
                 print("RAS eeprom version: {}".format(ras_feature['eeprom_version']))
                 print("RAS parity schema: {}".format(ras_feature['parity_schema']))
                 print("RAS single bit schema: {}".format(ras_feature['single_bit_schema']))
