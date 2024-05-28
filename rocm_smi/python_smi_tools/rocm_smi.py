@@ -467,7 +467,7 @@ def findFirstAvailableTemp(device):
     return (ret_temp_type, ret_temp)
 
 def getTemperatureLabel(deviceList):
-    """ Discovers the the first identified power label
+    """ Discovers the first identified power label
 
     Returns a string label value
     @param device: DRM device identifier
@@ -481,7 +481,7 @@ def getTemperatureLabel(deviceList):
     return tempLabel
 
 def getPowerLabel(deviceList):
-    """ Discovers the the first identified power label
+    """ Discovers the first identified power label
 
     Returns a string label value
     @param device: DRM device identifier
@@ -1439,7 +1439,7 @@ def setPerformanceLevel(deviceList, level):
 
 
 def setPowerOverDrive(deviceList, value, autoRespond):
-    """ Use Power OverDrive to change the the maximum power available power
+    """ Use Power OverDrive to change the maximum power available power
     available to the GPU in Watts. May be limited by the maximum power the
     VBIOS is configured to allow this card to use in OverDrive mode.
 
@@ -3561,7 +3561,7 @@ def rsmi_ret_ok(my_ret, device=None, metric=None, silent=False):
     @param device: DRM device identifier
     @param my_ret: Return of RSMI call (rocm_smi_lib API)
     @param metric: Parameter of GPU currently being analyzed
-    @param silent: Echo verbose error reponse.
+    @param silent: Echo verbose error response.
     True silences err output, False does not silence err output (default).
     """
     global RETCODE

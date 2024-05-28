@@ -269,12 +269,12 @@ For convenience purposes, following is the output from the -h flag:
 | SCLK_PROFILE_ENABLE | Whether or not to apply the 3 following SCLK settings (0=disable,1=enable) |
 |                     | **NOTE: This is a hidden field. If set to 0, the following 3 values are displayed as '-’** |
 | SCLK_UP_HYST        | Delay before sclk is increased (in milliseconds)   |
-| SCLK_DOWN_HYST      | Delay before sclk is decresed (in milliseconds)    |
+| SCLK_DOWN_HYST      | Delay before sclk is decreased (in milliseconds)   |
 | SCLK_ACTIVE_LEVEL   | Workload required before sclk levels change (in %) |
 | MCLK_PROFILE_ENABLE | Whether or not to apply the 3 following MCLK settings (0=disable,1=enable) |
 |                     | **NOTE: This is a hidden field. If set to 0, the following 3 values are displayed as '-'** |
 | MCLK_UP_HYST        | Delay before mclk is increased (in milliseconds)   |
-| MCLK_DOWN_HYST      | Delay before mclk is decresed (in milliseconds)    |
+| MCLK_DOWN_HYST      | Delay before mclk is decreased (in milliseconds)   |
 | MCLK_ACTIVE_LEVEL   | Workload required before mclk levels change (in %) |
 
       Other settings:

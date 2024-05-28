@@ -39,7 +39,7 @@ amd-smi process --gpu 0 1
 amd-smi reset --gpureset --gpu all
 ```
 
-More detailed verison information is available from `amd-smi version`
+More detailed version information is available from `amd-smi version`
 
 Each command will have detailed information via `amd-smi [command] --help`
 
